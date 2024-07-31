@@ -1,5 +1,16 @@
 import 'package:flutter/material.dart';
 
+class MessageButton extends StatelessWidget {
+  String imgPath;
+
+  MessageButton(this.imgPath);
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(onPressed: () {}, icon: Image.asset(this.imgPath, width: 24,));
+  }
+}
+
 class MessageCard extends StatelessWidget {
   const MessageCard({
     super.key,
@@ -8,7 +19,7 @@ class MessageCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 180,
+      height: 200,
       child: Card(
         child: Padding(
           padding: const EdgeInsets.all(10.0),
@@ -54,9 +65,12 @@ class MessageCard extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Text("Répondre"),
-                    Text("Retweet"),
-                    Text("Favoris")
+                    MessageButton("reply.png"),
+                    MessageButton("retweet.png"),
+                    MessageButton("favorite.png")
+                    // Text("Répondre"),
+                    // Text("Retweet"),
+                    // Text("Favoris")
                   ],
                 ),
               )
