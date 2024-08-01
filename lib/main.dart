@@ -1,11 +1,8 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:tp_twitter/app-theme.dart';
 import 'package:tp_twitter/auth-page.dart';
-import 'package:tp_twitter/message-card.dart';
 
-import 'footer.dart';
-import 'header.dart';
+import 'home-page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -28,33 +25,6 @@ class MyApp extends StatelessWidget {
         "/": (context) => AuthPage(),
         "/messages": (context) => MyHomePage()
       },
-    );
-  }
-}
-
-class MyHomePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-          // backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-          title: Text("Message"),
-          centerTitle: true),
-      body: Center(
-        child: Column(children: [
-          HeaderWidget(),
-          Expanded(
-              child: Padding(
-            padding: const EdgeInsets.all(20),
-            child: Column(
-              children: [
-                MessageCard(),
-              ],
-            ),
-          )),
-          FooterWidget()
-        ]),
-      ),
     );
   }
 }

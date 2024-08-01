@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tp_twitter/Message.dart';
 
 class MessageButton extends StatelessWidget {
   String imgPath;
@@ -7,14 +8,16 @@ class MessageButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return IconButton(onPressed: () {}, icon: Image.asset(this.imgPath, width: 24,));
+    return IconButton(
+        onPressed: () {}, icon: Image.asset(this.imgPath, width: 24));
   }
 }
 
 class MessageCard extends StatelessWidget {
-  const MessageCard({
-    super.key,
-  });
+
+  Message tweet;
+
+  MessageCard(this.tweet);
 
   @override
   Widget build(BuildContext context) {
@@ -36,13 +39,11 @@ class MessageCard extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Row(
-                            mainAxisAlignment:
-                            MainAxisAlignment.spaceBetween,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                "test@test.com",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold),
+                                tweet.author,
+                                style: TextStyle(fontWeight: FontWeight.bold),
                               ),
                               Text("50s")
                             ],
@@ -50,7 +51,7 @@ class MessageCard extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.symmetric(vertical: 5.0),
                             child: Text(
-                                "Muffin liquorice brownie tootsie roll tootsie roll halvah sesame snaps donut candy. Cotton candy chocolate cake pudding marzipan soufflé. Jujubes cake gummi bears gummies fruitcake. Muffin macaroon cheesecake jelly-o topping wafer. Muffin liquorice brownie tootsie roll tootsie roll halvah sesame snaps donut candy. Cotton candy chocolate cake pudding marzipan soufflé. Jujubes cake gummi bears gummies fruitcake. Muffin macaroon cheesecake jelly-o topping wafer.",
+                              tweet.message,
                                 overflow: TextOverflow.ellipsis,
                                 maxLines: 3),
                           ),
