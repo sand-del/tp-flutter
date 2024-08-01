@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tp_twitter/Message.dart';
+import 'package:tp_twitter/tweet.dart';
 
 class MessageButton extends StatelessWidget {
   String imgPath;
@@ -15,7 +16,7 @@ class MessageButton extends StatelessWidget {
 
 class MessageCard extends StatelessWidget {
 
-  Message tweet;
+  Tweet tweet;
 
   MessageCard(this.tweet);
 
