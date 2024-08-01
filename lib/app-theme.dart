@@ -22,7 +22,7 @@ class AppTheme {
   }
 
   /**
-   * Fonction pour automatiquement encapsuler n'importe widget donc composant dans un paddign vertical 10
+   * Fonction pour automatiquement encapsuler n'importe quel widget donc composant dans un paddign vertical 10
    */
   static Widget wrapFormPadding(Widget widget){
     return Padding(
