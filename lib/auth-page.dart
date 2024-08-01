@@ -1,8 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:email_validator/email_validator.dart';
+import 'package:tp_twitter/app-validator.dart';
 
 import 'app-theme.dart';
 
 class AuthPage extends StatelessWidget {
+  //la clef du formulaire
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  void onSubmit(BuildContext context) {
+    //tester si formulaire valide
+    if (!_formKey.currentState!.validate()) {
+      return;
+    }
+    Navigator.pushNamed(context, "/messages");
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,37 +26,61 @@ class AuthPage extends StatelessWidget {
       body: Stack(
         fit: StackFit.expand,
         children: [
-          Image.asset("background.jpg", fit: BoxFit.cover,),
+          Image.asset(
+            "background.jpg",
+            fit: BoxFit.cover,
+          ),
           Padding(
             padding: const EdgeInsets.all(60),
-            child: Column(
-              children: [
-                Image.asset("sign_in_icon.png", width: 126,),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 20),
-                  child: Text("Login", style: TextStyle(color: Color(0xDDFFFFFF), fontSize: 38),),
-                ),
-                AppTheme.wrapFormPadding(
-                    TextField(decoration: AppTheme.fieldDecoration("Email", "Veuillez saisir un email"),)
-                ),
-                AppTheme.wrapFormPadding(
-                    TextField(decoration: AppTheme.fieldDecoration("Password", "Veuillez saisir un mot de passe"),)
-                ),
-                AppTheme.wrapFormPadding(
-                    Row(children: [
+            child: Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  Image.asset(
+                    "sign_in_icon.png",
+                    width: 126,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 20),
+                    child: Text(
+                      "Login",
+                      style: TextStyle(color: Color(0xDDFFFFFF), fontSize: 38),
+                    ),
+                  ),
+                  AppTheme.wrapFormPadding(
+                      TextFormField(
+                    validator: AppValidator.emailValidator,
+                    style: TextStyle(color: Colors.white),
+                    decoration: AppTheme.fieldDecoration(
+                        "Email", "Veuillez saisir un email"),
+                  )),
+                  AppTheme.wrapFormPadding(TextFormField(
+                    validator: AppValidator.passwordValidator,
+                    style: TextStyle(color: Colors.white),
+                    decoration: AppTheme.fieldDecoration(
+                        "Password", "Veuillez saisir un mot de passe"),
+                  )),
+                  AppTheme.wrapFormPadding(Row(
+                    children: [
                       Switch(value: false, onChanged: (value) {}),
-                      Text("Mémoriser mes informations", style: TextStyle(color: Color(0xFFFFFFFF)),)
-                    ],)
-                ),
-                AppTheme.wrapFormPadding(
-                    SizedBox(
-                        width: double.infinity,
-                        child: ElevatedButton(onPressed: () { }, child: Padding(
-                          padding: const EdgeInsets.all(15.0),
-                          child: Text('Submit'),
-                        )))
-                ),
-              ],
+                      Text(
+                        "Mémoriser mes informations",
+                        style: TextStyle(color: Color(0xFFFFFFFF)),
+                      )
+                    ],
+                  )),
+                  AppTheme.wrapFormPadding(SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                          onPressed: () {
+                            onSubmit(context);
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.all(15.0),
+                            child: Text('Submit'),
+                          )))),
+                ],
+              ),
             ),
           )
         ],
