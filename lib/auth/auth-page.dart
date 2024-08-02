@@ -1,14 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
-import 'package:tp_twitter/app-validator.dart';
+import 'package:tp_twitter/auth/app-validator.dart';
 
 import 'app-theme.dart';
 
 class AuthPage extends StatelessWidget {
+
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
   //la clef du formulaire
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   void onSubmit(BuildContext context) {
+
+    String email = emailController.text!;
+
     //tester si formulaire valide
     if (!_formKey.currentState!.validate()) {
       return;
@@ -49,12 +56,14 @@ class AuthPage extends StatelessWidget {
                   ),
                   AppTheme.wrapFormPadding(
                       TextFormField(
+                        controller: emailController,
                     validator: AppValidator.emailValidator,
                     style: TextStyle(color: Colors.white),
                     decoration: AppTheme.fieldDecoration(
                         "Email", "Veuillez saisir un email"),
                   )),
                   AppTheme.wrapFormPadding(TextFormField(
+                    controller: passwordController,
                     validator: AppValidator.passwordValidator,
                     style: TextStyle(color: Colors.white),
                     decoration: AppTheme.fieldDecoration(

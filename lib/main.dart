@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tp_twitter/app-theme.dart';
-import 'package:tp_twitter/auth-page.dart';
+import 'package:tp_twitter/auth/app-theme.dart';
+import 'package:tp_twitter/auth/auth-page.dart';
 
 import 'home-page.dart';
 
